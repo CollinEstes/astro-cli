@@ -1,0 +1,25 @@
+{
+  "name": "astro-cli",
+  "version": "1.0.0",
+  "description": "The command line interface program for use with Astrokit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "astro": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "build"
+  ],
+  "author": "Collin Estes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CollinEstes/astro-cli/issues"
+  },
+  "homepage": "https://github.com/CollinEstes/astro-cli"
+}
