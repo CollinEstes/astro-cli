@@ -1,10 +1,11 @@
 #! /usr/bin/env nodejs
 var spawn = require('child_process').spawn,
     astroCmd = process.argv[2],
+    cwd = process.cwd(),
     cmd = spawn('docker', ['run',
                               '-t',
                               '-v',
-                              '/$(pwd):/src/app',
+                              cwd+':/src/app',
                               'mikefielden/astrokit:'+ astroCmd ]);
 
 cmd.stdout.on('data', function (data) {
