@@ -1,36 +1,31 @@
 #! /usr/bin/env node
 'use strict';
+var  _ = require('lodash');
+
 var spawn = require('child_process').spawn,
 		argv = process.argv,
-		astroCmd = argv[2],
-		astroArgs = argv.splice(3),
-		cwd = process.cwd(),
+		astroCmds = argv.splice(2),
+		cwd = process.cwd();
+
+
+// process each astro command supplied
+// creating the docker run cmd
+function handleAstroCommands (astroCmd) {
+	var imageName = astroCmd.split(':')[0],
 		command = 'docker',
 		args = ['run',
 						'-t',
 						'-v',
-						cwd+':/src/app'];
+						cwd+':/src/app',
+						'-e',
+						'ASTROCMD='+ astroCmd,
+						'mikefielden/astrokit:'+ imageName];
 
+	runCommand(astroCmd, command,args);
+};
 
-// handle additional arguments
-if (astroArgs.length !== 0) {
-	// THIS IS WHERE WE WOULD ADD ADDITIONAL ARGUEMENTS TO ARGS
-}
-
-// check for 'watch' command
-if (astroCmd === 'watch') {
-	// default for watch is mocha
-	args.push('mikefielden/astrokit:mocha');
-	watch(command, args);
-} else {
-
-	// add selected image to args
-	args.push('mikefielden/astrokit:'+ astroCmd);
-	runCommand(command, args);
-}
-
-
-function runCommand (command, args) {
+// exec the docker run cmd and process output
+function runCommand (astroCmd, command, args) {
 	// set up
 	var dockerRunCmd = spawn(command, args);
 
@@ -47,14 +42,18 @@ function runCommand (command, args) {
 	});
 };
 
-
-
-function watch (command, args) {
-	var watch = require('watch');
-
-	watch.watchTree(cwd, function (f, curr, prev) {
-		console.log('WATCH FOUND');
-    runCommand(command, args);
-  });
-
+// display astro help
+function help () {
+	console.log('TODO:  ADD HELP HERE');
 }
+
+
+// handle no command or help the same
+if (astroCmds.length === 0 || astroCmds[0] === 'help') {
+	help();
+} else {
+	// process the provided astro commands
+	_.forEach(astroCmds, handleAstroCommands);
+}
+
+
