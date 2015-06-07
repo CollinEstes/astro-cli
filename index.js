@@ -1,8 +1,9 @@
 #! /usr/bin/env node
+'use strict';
 var spawn = require('child_process').spawn,
 		argv = process.argv,
 		astroCmd = argv[2],
-		astroArgs = argv.splice
+		astroArgs = argv.splice(3),
 		cwd = process.cwd(),
 		command = 'docker',
 		args = ['run',
@@ -15,7 +16,6 @@ var spawn = require('child_process').spawn,
 if (astroArgs.length !== 0) {
 	// THIS IS WHERE WE WOULD ADD ADDITIONAL ARGUEMENTS TO ARGS
 }
-
 
 // check for 'watch' command
 if (astroCmd === 'watch') {
