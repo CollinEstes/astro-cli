@@ -21,12 +21,10 @@ Astro has two dependencies of the developer's host environment.
 
   > OSX and Windows developers can use [boot2docker](http://boot2docker.io/)
   
-  After you have those installed, download the source or clone this project locally.  
-  Then install astro via NPM
+  After you have those installed, then install astro via NPM
   
   ```
-  cd astro-cli
-  npm install astro-cli -g .
+  npm install -g https://github.com/CollinEstes/astro-cli.git
   ```
   > *sudo* may be necessary depending on NPM configuration
   
