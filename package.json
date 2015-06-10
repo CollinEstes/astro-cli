@@ -23,7 +23,5 @@
   },
   "homepage": "https://github.com/CollinEstes/astro-cli",
   "dependencies": {
-    "lodash": "^3.9.3",
-    "watch": "^0.16.0"
   }
 }

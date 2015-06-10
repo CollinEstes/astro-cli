@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 'use strict';
-var  _ = require('lodash');
+var chokidar = require('chokidar');
 
 var spawn = require('child_process').spawn,
 		argv = process.argv,
@@ -15,13 +15,25 @@ function handleAstroCommands (astroCmd) {
 		command = 'docker',
 		args = ['run',
 						'-t',
+						'--rm',
 						'-v',
 						cwd+':/src/app',
 						'-e',
 						'ASTROCMD='+ astroCmd,
 						'mikefielden/astrokit:'+ imageName];
 
-	runCommand(astroCmd, command,args);
+	if (astroCmd.indexOf('watch') !== -1) {
+
+		chokidar.watch('.', {
+			ignored: /[\/\\]\./, 
+			persistent: true}).on('change', function(path) {
+  		runCommand(astroCmd, command, args);
+		});
+
+	}
+
+	runCommand(astroCmd, command, args);
+
 };
 
 // exec the docker run cmd and process output
@@ -53,7 +65,7 @@ if (astroCmds.length === 0 || astroCmds[0] === 'help') {
 	help();
 } else {
 	// process the provided astro commands
-	_.forEach(astroCmds, handleAstroCommands);
+	astroCmds.forEach(handleAstroCommands);
 }
 
 
