@@ -1,7 +1,8 @@
 #! /usr/bin/env node
 'use strict';
-var chokidar = require('chokidar');
+var help = require('./help');
 
+var chokidar = require('chokidar');
 var spawn = require('child_process').spawn,
 		argv = process.argv,
 		astroCmds = argv.splice(2),
@@ -25,7 +26,7 @@ function handleAstroCommands (astroCmd) {
 	if (astroCmd.indexOf('watch') !== -1) {
 
 		chokidar.watch('.', {
-			ignored: /[\/\\]\./, 
+			ignored: /[\/\\]\./,
 			persistent: true}).on('change', function(path) {
   		runCommand(astroCmd, command, args);
 		});
@@ -54,10 +55,6 @@ function runCommand (astroCmd, command, args) {
 	});
 };
 
-// display astro help
-function help () {
-	console.log('TODO:  ADD HELP HERE');
-}
 
 
 // handle no command or help the same
