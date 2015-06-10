@@ -60,7 +60,7 @@ function help () {
     "       -$ 'astro update'",
     " ",
     " ",
-    "Just remeber Astro needs Docker to do his tricks ",
+    "Just remember Astro needs Docker to do his tricks ",
     "so make sure you are on Linux or use boot2docker on OSX/Windows",
     " ",
     " ",
