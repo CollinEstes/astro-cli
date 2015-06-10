@@ -5,8 +5,7 @@ var help = require('./help');
 var chokidar = require('chokidar');
 var spawn = require('child_process').spawn,
 		argv = process.argv,
-		astroCmds = argv.splice(2),
-		cwd = process.cwd();
+		astroCmds = argv.splice(2);
 
 
 // process each astro command supplied
@@ -18,7 +17,7 @@ function handleAstroCommand (astroCmd, cb) {
 						'-t',
 						'--rm',
 						'-v',
-						cwd+':/src/app',
+						'/($pwd):/src/app',
 						'-e',
 						'ASTROCMD='+ astroCmd,
 						'mikefielden/astrokit:'+ imageName];
