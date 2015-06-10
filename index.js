@@ -11,7 +11,7 @@ var spawn = require('child_process').spawn,
 
 // process each astro command supplied
 // creating the docker run cmd
-function handleAstroCommands (astroCmd) {
+function handleAstroCommand (astroCmd, cb) {
 	var imageName = astroCmd.split(':')[0],
 		command = 'docker',
 		args = ['run',
@@ -28,19 +28,28 @@ function handleAstroCommands (astroCmd) {
 		chokidar.watch('.', {
 			ignored: /[\/\\]\./,
 			persistent: true}).on('change', function(path) {
-  		runCommand(astroCmd, command, args);
+
+  			runCommand({
+  				'astroCmd': astroCmd,
+  				'root': command,
+  				'args': args
+  			}, cb);
 		});
 
 	}
 
-	runCommand(astroCmd, command, args);
+  runCommand({
+		'astroCmd': astroCmd,
+		'root': command,
+		'args': args
+		}, cb);
 
 };
 
 // exec the docker run cmd and process output
-function runCommand (astroCmd, command, args) {
+function runCommand (command, cb) {
 	// set up
-	var dockerRunCmd = spawn(command, args);
+	var dockerRunCmd = spawn(command.root, command.args);
 
 	dockerRunCmd.stdout.on('data', function (data) {
 		console.log(data.toString());
@@ -51,18 +60,20 @@ function runCommand (astroCmd, command, args) {
 	});
 
 	dockerRunCmd.on('exit', function (code) {
-		console.log('astro %s completed with code %s', astroCmd, code);
+		console.log('astro %s completed with code %s', command.astroCmd, code);
+		if (cb) { cb() };
 	});
 };
 
 
 
 // handle no command or help the same
-if (astroCmds.length === 0 || astroCmds[0] === 'help') {
+if (astroCmds.length === 0 || astroCmds[0] === 'help' || astroCmds[0] === '-h') {
 	help();
 } else {
+	// parse astroCmds
 	// process the provided astro commands
-	astroCmds.forEach(handleAstroCommands);
+	astroCmds.forEach(handleAstroCommand);
 }
 
 
