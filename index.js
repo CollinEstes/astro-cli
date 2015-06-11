@@ -5,7 +5,8 @@ var help = require('./help');
 var chokidar = require('chokidar');
 var spawn = require('child_process').spawn,
 		argv = process.argv,
-		astroCmds = argv.splice(2);
+		astroCmds = argv.splice(2),
+		cwd = process.cwd();
 
 
 // process each astro command supplied
@@ -17,7 +18,7 @@ function handleAstroCommand (astroCmd, cb) {
 						'-t',
 						'--rm',
 						'-v',
-						'/($pwd):/src/app',
+						'/' + cwd+':/src/app',
 						'-e',
 						'ASTROCMD='+ astroCmd,
 						'mikefielden/astrokit:'+ imageName];
@@ -60,7 +61,7 @@ function runCommand (command, cb) {
 
 	dockerRunCmd.on('exit', function (code) {
 		console.log('astro %s completed with code %s', command.astroCmd, code);
-		if (cb) { cb() };
+		if (cb) { console.log(cb) };  //TODO NEED TO STILL FIGURE THIS OUT
 	});
 };
 
