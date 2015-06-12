@@ -2,11 +2,15 @@
 'use strict';
 var help = require('./help');
 
-var chokidar = require('chokidar');
-var spawn = require('child_process').spawn,
-		argv = process.argv,
-		astroCmds = argv.splice(2),
-		cwd = process.cwd();
+var chokidar = require('chokidar')
+	, chalk = require('chalk')
+	;
+
+var spawn = require('child_process').spawn
+	, argv = process.argv
+	,	astroCmds = argv.splice(2)
+	, cwd = process.cwd()
+	;
 
 
 // process each astro command supplied
@@ -24,10 +28,9 @@ function handleAstroCommand (astroCmd, cb) {
 						'mikefielden/astrokit:'+ imageName],
 		options = astroCmd.split("-");
 
+	// if babel:over is selected, then do special handling.
 	if (astroCmd.indexOf('babel:over') !== -1) {
-		console.log('IMPORTANT- babel:over only impacts a node_modules dependency')
-		console.log('         - It is for situations where a dependency require transpilation')
-		console.log('         - Typically for testing local dependency')
+
 		args = ['run',
 						'-t',
 						'--rm',
@@ -35,16 +38,24 @@ function handleAstroCommand (astroCmd, cb) {
 						'/' + cwd+'/node_modules/' + options[1] + ':/src/app',
 						'-e',
 						'ASTROCMD='+ astroCmd,
-						'mikefielden/astrokit:babelOver'
+						'mikefielden/astrokit:babeloverwrite'
 						];
+
+		// babel:over message
+		console.log(chalk.red('IMPORTANT- babel:over only impacts a node_modules dependency'));
+		console.log(chalk.red('         - It is for situations where a dependency require transpilation'));
+		console.log(chalk.red('         - Typically for testing local dependency'));
 	}
 
 
 	if (astroCmd.indexOf('watch') !== -1) {
 
+
 		chokidar.watch('.', {
 			ignored: /[\/\\]\./,
 			persistent: true}).on('change', function(path) {
+
+			console.log(chalk.green('Astro saw change to: ' + path));
 
   			runCommand({
   				'astroCmd': astroCmd,
@@ -77,7 +88,12 @@ function runCommand (command, cb) {
 	});
 
 	dockerRunCmd.on('exit', function (code) {
-		console.log('astro %s completed with code %s', command.astroCmd, code);
+		if (code === 0) {
+			console.log(chalk.green('astro %s completed with code %s', command.astroCmd, code));
+		} else {
+			console.log(chalk.red('astro %s completed with code %s', command.astroCmd, code));
+		}
+
 		if (cb) { console.log(cb) };  //TODO NEED TO STILL FIGURE THIS OUT
 	});
 };

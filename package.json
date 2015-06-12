@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/CollinEstes/astro-cli",
   "dependencies": {
+    "chalk": "^1.0.0",
     "chokidar": "^1.0.3"
   }
 }
