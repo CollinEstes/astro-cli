@@ -21,7 +21,24 @@ function handleAstroCommand (astroCmd, cb) {
 						'/' + cwd+':/src/app',
 						'-e',
 						'ASTROCMD='+ astroCmd,
-						'mikefielden/astrokit:'+ imageName];
+						'mikefielden/astrokit:'+ imageName],
+		options = astroCmd.split("-");
+
+	if (astroCmd.indexOf('babel:over') !== -1) {
+		console.log('IMPORTANT- babel:over only impacts a node_modules dependency')
+		console.log('         - It is for situations where a dependency require transpilation')
+		console.log('         - Typically for testing local dependency')
+		args = ['run',
+						'-t',
+						'--rm',
+						'-v',
+						'/' + cwd+'/node_modules/' + options[1] + ':/src/app',
+						'-e',
+						'ASTROCMD='+ astroCmd,
+						'mikefielden/astrokit:babelOver'
+						];
+	}
+
 
 	if (astroCmd.indexOf('watch') !== -1) {
 
