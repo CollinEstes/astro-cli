@@ -4,11 +4,13 @@ var help = require('./help');
 
 var chokidar = require('chokidar')
 	, chalk = require('chalk')
+	, parseArgv = require('minimist')
 	;
 
 var spawn = require('child_process').spawn
-	, argv = process.argv
-	,	astroCmds = argv.splice(2)
+	, argv = parseArgv(process.argv)
+	, commands = argv._.slice(2)
+	, options
 	, cwd = process.cwd()
 	;
 
@@ -100,13 +102,15 @@ function runCommand (command, cb) {
 
 
 
+console.log(argv);
+
 // handle no command or help the same
-if (astroCmds.length === 0 || astroCmds[0] === 'help' || astroCmds[0] === '-h') {
-	help();
-} else {
-	// parse astroCmds
-	// process the provided astro commands
-	astroCmds.forEach(handleAstroCommand);
-}
+// if (astroCmds.length === 0 || astroCmds[0] === 'help' || astroCmds[0] === '-h') {
+// 	help();
+// } else {
+// 	// parse astroCmds
+// 	// process the provided astro commands
+// 	astroCmds.forEach(handleAstroCommand);
+// }
 
 
