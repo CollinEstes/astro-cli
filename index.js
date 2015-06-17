@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 'use strict';
-var help = require('./help');
+var help = require('./src/messages/help');
 
 var chokidar = require('chokidar')
 	, chalk = require('chalk')
@@ -10,9 +10,18 @@ var chokidar = require('chokidar')
 var spawn = require('child_process').spawn
 	, argv = parseArgv(process.argv)
 	, commands = argv._.slice(2)
-	, options
+	, commandString = commands.join("")
+	, options = Object.keys(argv).slice(1, argv.length)
+	, optionString =  options.join("")
 	, cwd = process.cwd()
+	, processCommands = require('./src/processCommands.js')
 	;
+
+// flag for help
+var needsHelp = (commands.length === 0) ||
+						(commandString.indexOf('help') !== -1) ||
+						(optionString.indexOf('help') !== -1);
+
 
 
 // process each astro command supplied
@@ -102,7 +111,16 @@ function runCommand (command, cb) {
 
 
 
-console.log(argv);
+if (needsHelp) {
+	return help();
+}
+
+
+//parse aliases to command(s)
+commands.forEach(function ()
+
+
+
 
 // handle no command or help the same
 // if (astroCmds.length === 0 || astroCmds[0] === 'help' || astroCmds[0] === '-h') {

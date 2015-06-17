@@ -4,7 +4,7 @@
   "description": "The command line interface program for use with Astrokit",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --recursive './test/setup.js' './test/**/*.js'"
   },
   "bin": {
     "astro": "index.js"
@@ -26,5 +26,11 @@
     "chalk": "^1.0.0",
     "chokidar": "^1.0.3",
     "minimist": "^1.1.1"
+  },
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "mocha": "^2.2.5",
+    "sinon": "^1.15.3",
+    "sinon-chai": "^2.8.0"
   }
 }
