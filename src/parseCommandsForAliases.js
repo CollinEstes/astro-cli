@@ -2,8 +2,8 @@
 *
 * parseCommands.js - searching for aliases in supplied commands
 *
-* #param - commands - the array of string commands to be parsed
-* #param - aliases - the object containing aliases keys
+* @param - commands - the array of string commands to be parsed
+* @param - aliases - the object containing aliases keys
 **/
 var _ = require('lodash');
 
@@ -26,6 +26,8 @@ module.exports = function (commands, aliases) {
 			parsed.push(cmd);
 		}
 	});
+
+	console.log(parsed);
 
 	return _.uniq(parsed);
 }

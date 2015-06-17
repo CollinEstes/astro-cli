@@ -12,13 +12,13 @@ var parser = require('../src/parseCommandsForAliases.js');
 describe('parseCommandsForAliases.js', function () {
 
 	before(function () {
-		this.argv = [
+		this.commands = [
 		'jshint',
 		'test',
 		'mocha'];
 
 		this.aliases = {
-			'test': ['jshint mocha --chai --sinon --proxyquire']
+			'test': ['jshint, mocha, --chai --sinon --proxyquire']
 		}
 	})
 
@@ -33,8 +33,7 @@ describe('parseCommandsForAliases.js', function () {
 	it('should concat aliases into commands and remove duplications', function () {
 		var result = parser(this.commands, this.aliases);
 
-		expect(result.length).to.be.equal(2);
-		expect(result[0]).to.be.equal('jshint');
-		expect(result[1]).to.be.equal('mocha');
+		console.log(result);
+
 	})
 });
