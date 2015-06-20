@@ -7,19 +7,41 @@
 **/
 
 var noCommandFound = require('./messages/noCommandFound.js');
+var cwd = process.cwd();
 
-module.exports = function (aliases, command, options) {
-	// check for alias
-	if (aliases[command]) {
-		command = aliases[command];
-	}
+var processOutput = require('./processOutput.js');
 
-	//check and see if there is a corresponding file for the command
+// check to see if module requested exists
+function checkForModule (cmd) {
+	var moduleName = "astro-" + cmd,
+		foundName;
 	try {
-		var commandFile = require('./commands/' + command + '.js');
-		commandFile(options);
-	} catch (e) {
-		// show unknown command message;
-		noCommandFound(command);
+		foundName = require.resolve(moduleName);
+		return foundName;
+	}
+	catch (e) {
+		noCommandFound(cmd);
+		foundName = null;
+		return foundName;
 	}
 }
+
+// process the command
+function processCommand (cmd, options) {
+	var module = checkForModule(cmd),
+		command;
+
+	if (module) {
+		command = require(module)(cwd, options);
+		processOutput(command.cmd, command.args);
+	}
+
+};
+
+module.exports = function (commands, options) {
+	// process each command
+	commands.forEach(function (cmd) {
+		processCommand(cmd, options);
+	});
+
+};

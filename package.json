@@ -4,7 +4,8 @@
   "description": "The command line interface program for use with Astrokit",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive './test/setup.js' './test/**/*.js'"
+    "test": "mocha --recursive ./test/setup.js ./test/**/*.js",
+    "test:watch": "mocha --recursive './test/setup.js' './test/**/*.js' -w"
   },
   "bin": {
     "astro": "index.js"

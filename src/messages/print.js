@@ -4,7 +4,7 @@
 * @param:messages - Array of strings
 *
 **/
-function print (messages) {
+module.exports = function (messages) {
 	messages.forEach(function (message) {
 		console.log(message);
 	});
