@@ -6,7 +6,8 @@ var chokidar = require('chokidar')
 	, chalk = require('chalk')
 	, parseArgv = require('./src/parseArgv')
 	, aliases = require('./src/aliases.js')
-	, processCommand = require('./src/processCommands.js')
+	, processCommands = require('./src/processCommands.js')
+	, watcher = require('./src/watcher.js')
 	;
 
 // parse Argv
@@ -25,8 +26,13 @@ if (needsHelp) {
 	return help();
 }
 
+
+if (args.watch) {
+	watcher(commands, args);
+}
+
 // process command
-processCommand(commands, args);
+processCommands(commands, args);
 
 
 // // process each astro command supplied
