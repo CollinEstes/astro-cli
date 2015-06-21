@@ -5,7 +5,7 @@ var help = require('./src/messages/help');
 var chokidar = require('chokidar')
 	, chalk = require('chalk')
 	, parseArgv = require('./src/parseArgv')
-	, aliases = require('./src/aliases.js')
+	, aliases = require('./src/aliases.js')()
 	, processCommands = require('./src/processCommands.js')
 	, watcher = require('./src/watcher.js')
 	;
