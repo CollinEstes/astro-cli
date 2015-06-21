@@ -9,16 +9,20 @@ var _ = require('lodash');
 var minimist = require('minimist');
 
 module.exports = function (argv, aliases) {
-	var parsed = minimist(argv.slice(2))
-		commands = parsed._;
+	var parsedArgv = minimist(argv.slice(2))
+		, commands = parsedArgv._
+		, parsed;
 
-	if (!aliases) {
-		return parsed;
+	if (!aliases || !aliases[parsedArgv._[0]]) {
+		return parsedArgv;
 	}
 
-	// if there is an alias then override argv
-	if (aliases[parsed._[0]]) {
-		parsed = minimist(aliases[parsed._[0]]);
+	// bring in alias commands
+	parsed = minimist(aliases[parsedArgv._[0]]);
+
+	// if watch add option back
+	if (parsedArgv.watch) {
+		parsed.watch = true;
 	}
 
 	return parsed;

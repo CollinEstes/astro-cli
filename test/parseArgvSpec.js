@@ -26,6 +26,13 @@ describe('parseArgv.js', function () {
 			'/Users/collinestes/work/node/astro-cli/index',
 			'test'
 			];
+
+		this.aliasedCommandsWithOption = [
+			'/bin/iojs',
+			'/Users/collinestes/work/node/astro-cli/index',
+			'test',
+			'--watch'
+			];
 	})
 
 	it('should return an object with _ as a property', function () {
@@ -46,6 +53,11 @@ describe('parseArgv.js', function () {
 		expect(r._[0]).to.equal('mocha');
 		expect(r.chai).to.exist;
 		expect(r.sinon).to.exist;
+	});
+
+	it('should handle aliases with additional watch commands', function () {
+		var r = parser(this.aliasedCommandsWithOption, aliases);
+		expect(r.watch).to.exist;
 	});
 
 });
