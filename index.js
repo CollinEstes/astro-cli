@@ -7,6 +7,7 @@ var chokidar = require('chokidar')
 	, parseArgv = require('./src/parseArgv')
 	, aliases = require('./src/aliases.js')()
 	, processCommands = require('./src/processCommands.js')
+	, processCommandsInContainer = require('./src/processCommandsInContainer.js')
 	, watcher = require('./src/watcher.js')
 	;
 
@@ -26,7 +27,12 @@ if (needsHelp) {
 	return help();
 }
 
+// handle docker request
+if (args.docker) {
+	return processCommandsInContainer(commands, args);
+}
 
+// handle watch request
 if (args.watch) {
 	watcher(commands, args);
 }
