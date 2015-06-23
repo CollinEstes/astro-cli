@@ -1,19 +1,37 @@
-# Astro - the space age developer's best friend
+# Astro
+	the space age developer's best friend
 
-## a docker based code style checker, tester, transpiler, transformer, and more.
+## a javascript style checker, tester, transpiler, transformer, and more.
 
-Astro is a command line tool for developers to quickly perform the common tasks that make up a modern workflow. 
+Astro is a command line tool for developers to quickly perform the common tasks that make up a modern workflow or asset pipeline, but doing so from external to the 
 
-Astro aims to eliminate setup time needed when creating or enhancing micro-service modules. Together Astro and [Astrokit](https://registry.hub.docker.com/u/mikefielden/astrokit/) provide a framework for incorporating the latest workflow tooling and processes into daily software engineering workflows.  Astro does not require any configuration to be used out of the box. As workflow tooling and processes change, existing applications will require no task runner updates or new scrips to use the latest tools.
-
-Astro pulls and executes dockerfiles and associated resources to run services within Docker containers.  This lets Astro normalizes the runtime environments so developers can work on any OS and not have to worry about OS specific installation or usages.
+Astro aims to eliminate setup time needed when creating or enhancing micro-service modules. Astro provides a framework for incorporating the latest workflow tooling and processes into daily software engineering workflows.  Astro does not require any configuration to be used out of the box. As workflow tooling and processes change, existing applications will require no task runner updates, no new scripts, and no additional dependencies to use the latest tools.
 
 
-Currently Astro provides Node.js and front-end development workflow tools, but future ehacements into other languages is intended.  To help teach Astro new tricks see the [issues](https://github.com/CollinEstes/astro-cli/issues) to create a new request, or even better submit your PR.
+Currently Astro provides Node.js and front-end development workflow tools:
+
+	+ Style / Syntax Checking
+		+ Jshint
+		+ JSCS (coming soon)
+		+ ESLINT (coming soon)
+	+ Testing
+		+ Mocha (with chai, sinon and sinon-chai)
+	+ Transpiling
+		+ Babel (coming soon)
+		+ SASS (coming soon)
+	+ Transforming
+		+ Concat / Minification (coming soon)
+		+ Image compression (coming soon)
+	+ Building
+		+ Docker (coming soon)
+
+
 
 
 ### Installing Astro
-#COMING SOON
+```
+npm install -g ast
+```
 
 ### Using Astro
 #COMING SOON
