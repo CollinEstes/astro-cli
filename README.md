@@ -13,58 +13,7 @@ Currently Astro provides Node.js and front-end development workflow tools, but f
 
 
 ### Installing Astro
+#COMING SOON
 
-Astro has two dependencies of the developer's host environment.
-
-  + [Node.js](https://nodejs.org/)
-  + [Docker](https://docs.docker.com/) - which currently requires Linux.  
-
-  > OSX and Windows developers can use [boot2docker](http://boot2docker.io/)
-  
-  After you have those installed, then install astro via NPM
-  
-  ```
-  npm install -g https://github.com/CollinEstes/astro-cli.git
-  ```
-  > *sudo* may be necessary depending on NPM configuration
-  
-  *Astro will be in NPM soon...*
-  
-
-### Astro can do tricks
-
-  + **Javascript Style Checking**
-    - JSHINT
-    ```
-      cd /myApp
-      astro jshint
-    ```
-    - JSCS
-    ```
-    coming soon...
-    ```
-    - ESLINT
-    ```
-    coming soon...
-    ```
-  + **Javascript Testing**
-    - Mocha (w/ Chai and Sinon)
-    ```
-    cd /myModule
-    astro mocha
-    ```
-    
-  + **Javascript Transpiling**
-    - Babel
-    ```
-    cd /myApp
-    astro babel
-    ```
-  
-
-
-
-
-
-
-
+### Using Astro
+#COMING SOON
