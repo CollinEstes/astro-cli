@@ -5,13 +5,14 @@
 **/
 var chalk = require('chalk')
 	, spawn = require('child_process').spawn
+	, cwd = process.cwd()
 	, _ = require('lodash')
 	;
 
 
 function runCommand (cmd, args, cb) {
-	var child = spawn(cmd, args, {stdio: "inherit"});
-
+	var child = spawn(cmd, args, {stdio: "inherit", cwd: cwd});
+	console.log(cwd);
 	child.on('exit', function (code) {
 		if (code === 0) {
 			console.log(chalk.green('--good dog'));

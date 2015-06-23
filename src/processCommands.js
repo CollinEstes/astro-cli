@@ -6,10 +6,11 @@
 * @param options - the options to apply to the command
 **/
 
-var noCommandFound = require('./messages/noCommandFound.js');
-var cwd = process.cwd();
-
-var processOutput = require('./processOutput.js');
+var noCommandFound = require('./messages/noCommandFound.js')
+	, processCommandInContainer = require('./processCommandInContainer.js')
+	, cwd = process.cwd()
+	, processOutput = require('./processOutput.js')
+	;
 
 // check to see if module requested exists
 function checkForModule (cmd) {
@@ -28,12 +29,19 @@ function checkForModule (cmd) {
 
 // process the command
 function processCommand (cmd, options) {
-	var module = checkForModule(cmd),
-		command;
+	var module, command;
 
-	if (module) {
-		command = require(module)(cwd, options);
-		processOutput(command.cmd, command.args);
+	// check to see if command has --docker option
+	if(options.docker) {
+		// process command from inside application's Docker container image
+		return processCommandInContainer(cmd, options);
+	} else {
+		 module = checkForModule(cmd);
+
+		if (module) {
+			command = require(module)(cwd, options);
+			processOutput(command.cmd, command.args);
+		}
 	}
 
 };

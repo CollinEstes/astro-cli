@@ -1,6 +1,6 @@
 {
   "name": "astro-cli",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "The command line interface program for use with Astrokit",
   "main": "index.js",
   "scripts": {
@@ -13,10 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/CollinEstes/astro-cli/"
   },
   "keywords": [
-    "build"
+    "build",
+    "asset",
+    "pipeline",
+    "node",
+    "astro"
   ],
   "author": "Collin Estes",
   "license": "ISC",
@@ -27,7 +31,6 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "chokidar": "^1.0.3",
-    "line-by-line": "^0.1.3",
     "lodash": "^3.9.3",
     "minimist": "^1.1.1",
     "tmp": "0.0.26"
