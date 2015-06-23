@@ -1,7 +1,7 @@
 {
   "name": "astro-cli",
-  "version": "0.0.1",
-  "description": "The command line interface program for running common Node.js web development tasks",
+  "version": "0.0.3",
+  "description": "The command line interface program for use with Astrokit",
   "main": "index.js",
   "scripts": {
     "test:self": "astro test",
@@ -13,17 +13,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/CollinEstes/astro-cli/"
+    "url": ""
   },
   "keywords": [
-    "build",
-    "testing",
-    "style",
-    "task",
-    "runner",
-    "asset",
-    "pipeline",
-    "tool"
+    "build"
   ],
   "author": "Collin Estes",
   "license": "ISC",
