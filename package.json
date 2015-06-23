@@ -13,10 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/CollinEstes/astro-cli/"
   },
   "keywords": [
-    "build"
+    "build",
+    "asset",
+    "pipeline",
+    "node",
+    "astro"
   ],
   "author": "Collin Estes",
   "license": "ISC",
@@ -27,6 +31,7 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "chokidar": "^1.0.3",
+    "lodash": "^3.9.3",
     "minimist": "^1.1.1",
     "tmp": "0.0.26"
   },

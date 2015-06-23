@@ -36,7 +36,6 @@ module.exports = function (command, args) {
 		, moduleName = pathArray[pathArray.length - 1]
 		, lr = new LineByLineReader(cwd + '/Dockerfile')
 		, lines = []
-		, foundAstro = false
 		;
 
 	lr.on('error', function (err) {
@@ -44,24 +43,14 @@ module.exports = function (command, args) {
 	});
 
 	lr.on('line', function (line) {
-		 // if we have not found astro yet
-		 if (!foundAstro) {
-		 	//check for Astro on the current line
-		 	if (line === '#ASTRO') {
-		 		// set foundAstro to stop saving lines
-	    	return foundAstro = true;
-	    } else {
-	    	// push the line into lines
-	    	lines.push(line);
-	    }
-		 }
+	  // push the line into lines
+  	lines.push(line);
 	});
 
 	lr.on('end', function () {
-		if (!foundAstro) {
+		if (lines.length === 0) {
 			// print message explaining how to put #ASTRO in Dockerfile
-			console.log('Must put #ASTRO comment in Dockerfile');
-			console.log('place #ASTRO on the line where Environment is ready for astro to run');
+			console.log('Could not find a Dockerfile');
 		}
 		createTmpFile(lines);
 	});
