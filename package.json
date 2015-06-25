@@ -1,6 +1,6 @@
 {
   "name": "astro-cli",
-  "version": "1.0.0",
+  "version": "0.0.4",
   "description": "The command line interface program for use with Astrokit",
   "main": "index.js",
   "scripts": {

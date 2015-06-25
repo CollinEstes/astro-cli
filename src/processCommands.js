@@ -9,7 +9,7 @@
 var noCommandFound = require('./messages/noCommandFound.js')
 	, processCommandInContainer = require('./processCommandInContainer.js')
 	, cwd = process.cwd()
-	, processOutput = require('./processOutput.js')
+	, executeCommand = require('./executeCommand.js')
 	;
 
 // check to see if module requested exists
@@ -40,7 +40,7 @@ function processCommand (cmd, options) {
 
 		if (module) {
 			command = require(module)(cwd, options);
-			processOutput(command.cmd, command.args);
+			executeCommand(command.cmd, command.args, cwd);
 		}
 	}
 
