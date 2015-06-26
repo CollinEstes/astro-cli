@@ -23,9 +23,6 @@ Currently Astro provides Node.js and front-end development workflow tools:
 	+ Building
 		+ Docker (coming soon)
 
-	+ TBD
-		+ As new tooling comes arou
-
 
 
 ### Installing Astro
