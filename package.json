@@ -1,7 +1,7 @@
 {
   "name": "astro-cli",
-  "version": "0.0.4",
-  "description": "The command line interface program for use with Astrokit",
+  "version": "0.0.8",
+  "description": "A space age developer's task runner/asset pipeline tool",
   "main": "index.js",
   "scripts": {
     "test:self": "astro test",
