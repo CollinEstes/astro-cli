@@ -34,7 +34,7 @@ Astro-cli is responsible for handling commands and running the appropriate astro
 To install modules:
 
 ```
-$ astro install mocha
+$		astro install mocha
 ```
 
 
@@ -45,15 +45,25 @@ This commmand will add [astro-mocha](https://www.npmjs.com/package/astro-mocha) 
 Once installed, from any project directory you can run:
 
 ```
-$ cd myProject
-$myProject astro mocha  *astro runs myProject's tests with mocha*
-$ cd ../myModule
-$myModule astro mocha 	*astro runs myModule's tests with mocha*
+$ 	cd myProject
+myProject$		astro mocha  *astro runs myProject's tests with mocha*
+$ 	cd ../myModule
+myModule$ 	astro mocha 	*astro runs myModule's tests with mocha*
 ```
 
 myProject and myModule in the above example require no setup other than tests in a '/test' folder.
 
 
+### Features
 
+#### Watch
 
+Astro comes with a built in directory watch mechanism (using [Chokidar](https://www.npmjs.com/package/chokidar)) that can be added to any astro command. To add a watch just add the "--watch" option to any Astro command:
+
+```
+$		cd myProject
+myProject$		astro mocha --watch
+```
+
+Astro will now run the "mocha" command but it will also watch for any changes to "myProject"
 
