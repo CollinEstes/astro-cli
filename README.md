@@ -29,7 +29,7 @@ Currently Astro provides Node.js and front-end development workflow tools:
 ```
 $ npm install -g astro-cli
 ```
-Astro-cli is responsible for executing commands that excute the seperate astro modules.  This allows for new modules to be created and incorporated seamlessly. Astro ships without any modules by default, all desired modules will be installed when they are requested.
+Astro-cli is responsible for handling commands and running the appropriate astro modules.  This allows for new modules to be created and incorporated seamlessly. Astro ships without any modules by default, all desired modules will be installed when they are requested.
 
 To install modules:
 
@@ -46,9 +46,9 @@ Once installed, from any project directory you can run:
 
 ```
 $ cd myProject
-$myProject astro mocha  *(astro runs myProject's tests with mocha)*
+$myProject astro mocha  *astro runs myProject's tests with mocha*
 $ cd ../myModule
-$myModule astro mocha 	*(astro runs myModule's tests with mocha)*
+$myModule astro mocha 	*astro runs myModule's tests with mocha*
 ```
 
 myProject and myModule in the above example require no setup other than tests in a '/test' folder.
