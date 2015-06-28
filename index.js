@@ -8,7 +8,6 @@ var chokidar = require('chokidar')
 	, aliases = require('./src/aliases')()
 	, processCommands = require('./src/processCommands')
 	, processCommandsInContainer = require('./src/processCommandsInContainer')
-	, processUpdateCommands = require('./src/processUpdateCommands')
 	, processInstallCommands = require('./src/processInstallCommands')
 	, watcher = require('./src/watcher')
 	;
@@ -31,7 +30,7 @@ if (needsHelp) {
 
 // check for update/install command
 // special function for installing/updateing astro modules for usage
-if (commands[0] === 'install' || comands[0] === 'update') {
+if (commands[0] === 'install' || commands[0] === 'update') {
 	return processInstallCommands(commands, args);
 }
 

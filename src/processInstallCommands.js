@@ -9,7 +9,7 @@ var path = require('path')
 
 var executeCommand = require('./executeCommand.js');
 
-module.exports = function (commands, options) {
+module.exports = function (commands, options, cb) {
 	var moduleNames = commands.slice(1);
 	var dir = path.dirname(fs.realpathSync(__filename));
 
@@ -19,7 +19,7 @@ module.exports = function (commands, options) {
 			name = 'astro-' + name;
 		}
 
-		executeCommand('npm', ['install', name], dir);
+		executeCommand('npm', ['install', name], dir, cb);
 	})
 
 };

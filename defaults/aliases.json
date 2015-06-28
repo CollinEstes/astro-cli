@@ -2,6 +2,7 @@
 	"test": [
 		"mocha",
 		"--sinon",
-		"--chai"
+		"--chai",
+		"--force"
 	]
 }
