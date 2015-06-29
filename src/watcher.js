@@ -9,6 +9,7 @@ var chokidar = require('chokidar');
 
 var fileChangeMsg = require('./messages/fileChange.js')
 	, processCommands = require('./processCommands.js')
+	, processCommandsInContainer = require('./processCommandsInContainer')
 	;
 
 module.exports = function (commands, args) {
@@ -19,9 +20,12 @@ module.exports = function (commands, args) {
 
 		// print the path of what changed
 		fileChangeMsg(path);
-
 		// run the command that we were watching for
-		processCommands(commands, args);
+		if (args.docker) {
+			processCommandsInContainer(commands, args, true);
+		} else {
+			processCommands(commands, args);
+		}
 
 	});
 };

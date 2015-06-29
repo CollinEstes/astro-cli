@@ -1,57 +1,82 @@
-// /**
-// *
-// * processCommandsInContainer.js
-// *
-// **/
-// var cwd = process.cwd()
-// 	, tmp = require('tmp')
-// 	, fs = require('fs')
-// 	, LineByLineReader = require('line-by-line')
-// 	;
+/**
+*
+* processCommandInContianer.js - setups up docker image to run command from within application's docker image
+*
+**/
+var cwd = process.cwd()
+	, executeCommand = require('./executeCommand')
+	;
+
+var imageName;
+
+function checkForDockerfile () {
+	try {
+		require.resolve(cwd + '/Dockerfile');
+		return true;
+	} catch (e) {
+		return null;
+	}
+}
+
+function rebuildOptions (args) {
+	// remove docker and watch options
+	// add back "--"
+	return Object.keys(args)
+		.filter(function (a) {
+			// scrub watch and add leading -- back
+			return (a !== 'watch' && a !== 'docker');
+		})
+		.map(function (a) {
+			return '--' + a;
+		});
+}
 
 
-// function createTmpFile (lines) {
-// 	// on completion of reading the calling module's Dockerfile,
-// 		// create the astro version of the found DockerFile
-// 		if (lines.length === 0) {
-// 			return console.log('No Dockerfile found in:' + cwd);
-// 		}
+function buildBaseImage (cb) {
+	executeCommand('docker', ['build', '-t', imageName , '.'], cwd, cb);
+}
 
-// 		var tmpObj = tmp.fileSync()
-// 			,	file = fs.createWriteStream(tmpObj.name);
+function runImage (commands, args) {
+	// build docker run command
+	var options = rebuildOptions(args)
+			, runArgs = [
+					'run',
+					'--rm',
+					'-t',
+					'-v',
+					cwd  + ':' + '/tmp/astro/app',
+					imageName,
+					'./node_modules/.bin/astro'].
+					concat(commands).
+					concat(options).
+					concat(['--force']);
 
-// 		file.on('error', function (err) { console.log(err)});
+	// run image
+  executeCommand('docker', runArgs, cwd);
+}
 
-// 		file.write(lines.join('\n'));
+module.exports = function (commands, args, fromWatch) {
+	var dir = cwd.split('/');
 
-// 		fs.readFile(tmpObj.name, function (err, data) {
-// 			var buff = new Buffer(data);
-// 			console.log(buff.toString('utf-8'));
-// 		});
-// }
+	// set imageName for the name of the project
+	imageName = 'astro-' + dir[dir.length -1];
 
+	//first: get application's DockerFile to server as base image
+	var dockerFile = checkForDockerfile();
 
-// module.exports = function (command, args) {
-// 	var pathArray = cwd.split('/')
-// 		, moduleName = pathArray[pathArray.length - 1]
-// 		, lr = new LineByLineReader(cwd + '/Dockerfile')
-// 		, lines = []
-// 		;
+	if (!dockerFile) {
+		return console.log('No DockerFile message'); //TODO route to proper message
+	}
 
-// 	lr.on('error', function (err) {
-//     console.log('Could not find a Dockerfile');
-// 	});
+	if (!fromWatch) {
+		buildBaseImage(function (err) {
+			if (err) {
+				throw err;
+			}
+			runImage(commands, args);
+		});
+	} else {
+		runImage(commands, args);
+	}
 
-// 	lr.on('line', function (line) {
-// 	  // push the line into lines
-//   	lines.push(line);
-// 	});
-
-// 	lr.on('end', function () {
-// 		if (lines.length === 0) {
-// 			// print message explaining how to put #ASTRO in Dockerfile
-// 			console.log('Could not find a Dockerfile');
-// 		}
-// 		createTmpFile(lines);
-// 	});
-// }
+};

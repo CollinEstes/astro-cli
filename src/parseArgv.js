@@ -20,6 +20,10 @@ module.exports = function (argv, aliases) {
 	// bring in alias commands
 	parsed = minimist(aliases[parsedArgv._[0]]);
 
+	if (parsedArgv.docker) {
+		parsed.docker = true;
+	}
+
 	// if watch add option back
 	if (parsedArgv.watch) {
 		parsed.watch = true;

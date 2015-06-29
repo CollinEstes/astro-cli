@@ -1,6 +1,6 @@
 {
   "name": "astro-cli",
-  "version": "0.0.12",
+  "version": "0.1.0",
   "description": "A space age developer's task runner/asset pipeline tool",
   "main": "index.js",
   "scripts": {
@@ -31,6 +31,7 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "chokidar": "^1.0.3",
+    "fs-extra": "^0.20.1",
     "lodash": "^3.9.3",
     "minimist": "^1.1.1",
     "tmp": "0.0.26"

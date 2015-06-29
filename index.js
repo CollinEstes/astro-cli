@@ -39,5 +39,9 @@ if (args.watch) {
 	watcher(commands, args);
 }
 
-// process command
-processCommands(commands, args);
+// check for docker option
+if (args.docker) {
+	processCommandsInContainer(commands, args);
+} else {
+	processCommands(commands, args);
+}

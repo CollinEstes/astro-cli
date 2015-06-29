@@ -8,7 +8,6 @@
 
 var noCommandFound = require('./messages/noCommandFound')
 	, processInstallCommands = require('./processInstallCommands')
-	, processCommandInContainer = require('./processCommandInContainer')
 	, cwd = process.cwd()
 	, executeCommand = require('./executeCommand')
 	, checkForModule = require('./checkForModule')
@@ -28,14 +27,7 @@ function executeModule(module, options) {
 
 // process the command
 function processCommand (cmd, options) {
-	var module;
-
-	// check to see if command has --docker option
-	if(options.docker) {
-		// process command from inside application's Docker container image
-		return processCommandInContainer(cmd, options);
-	} else {
-		 module = checkForModule(cmd);
+	var module = checkForModule(cmd);
 
 		 // execute module if exists
 		if (module) {
@@ -60,9 +52,7 @@ function processCommand (cmd, options) {
 		// module was not found and "force" was not desginated
 		return noCommandFound(cmd);
 
-	}
-
-};
+}
 
 
 module.exports = function (commands, options) {
