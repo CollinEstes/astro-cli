@@ -5,5 +5,10 @@
 **/
 
 module.exports = function (commands, args) {
-	console.log(commands);
+	var aliasCommands = commands.slice(1);
+
+	// 'astro alias' display alias json
+	if (aliasCommands.length === 0) {
+		
+	}
 }
