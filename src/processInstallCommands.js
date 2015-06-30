@@ -34,8 +34,6 @@ module.exports = function (commands, options, cb) {
 		, hasLocal = checkForLocal(localPath)
 		;
 
-
-
 	moduleNames.forEach(function (name) {
 		if (name.indexOf('astro-') === -1) {
 			name = 'astro-' + name;

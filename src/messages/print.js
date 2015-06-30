@@ -2,10 +2,17 @@
 *
 * print messages
 * @param:messages - Array of strings
+* @param:color - The color of the message
 *
 **/
-module.exports = function (messages) {
+
+var chalk = require('chalk');
+
+module.exports = function (messages, color) {
 	messages.forEach(function (message) {
-		console.log(message);
+		if (!color) {
+			color = 'white';
+		}
+		console.log(chalk[color](message));
 	});
 };

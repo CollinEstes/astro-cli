@@ -6,20 +6,35 @@ As workflow tooling and processes change, existing applications will not require
 
 Currently Astro provides Node.js and front-end development workflow tools:
 
-	+ Style / Syntax Checking
-		+ Jshint
-		+ JSCS (coming soon)
-		+ ESLINT (coming soon)
-	+ Testing
-		+ Mocha (with chai, sinon and sinon-chai)
-	+ Transpiling
-		+ Babel (coming soon)
-		+ SASS (coming soon)
-	+ Transforming
-		+ Concat / Minification (coming soon)
-		+ Image compression (coming soon)
-	+ Building
-		+ Docker (coming soon)
+#### Style/Syntax Checking
++ Jshint
++ JSCS (coming soon)
++ ESLINT (coming soon)
+
+#### Testing
++ Mocha (with chai, sinon and sinon-chai)
+
+#### Transpiling
++ Babel (coming soon)
++ SASS (coming soon)
+
+#### Transforming
++ Concat / Minification (coming soon)
++ Image compression (coming soon)
+
+#### Building
++ Docker (coming soon)
+
+
+### Astro Modules
+Astro modules, by convention, will be named "astro-{moduleName}".
+
+Astro is responsible for handling commands and running the appropriate astro modules.  This allows for new modules to be created and incorporated seamlessly. Astro ships with no modules by default, all desired modules will be installed when they are requested.
+
+Discover [astro modules](https://www.npmjs.com/search?q=astro-)
+
+Each module will have it's own available options.  See individual module documentation for details on usage options available.
+
 
 ### Astro with Docker
 
@@ -30,19 +45,13 @@ This, for example, lets you execute your tests from within your application's Do
 For more information see the "--docker" option section below.
 
 ### Installing Astro
+
+*Currently astro only works on OSX/Linux.  Windows support is in progress currently*
+
 ```
 $ npm install -g astro-cli
 ```
-Astro-cli is responsible for handling commands and running the appropriate astro modules.  This allows for new modules to be created and incorporated seamlessly. Astro ships without any modules by default, all desired modules will be installed when they are requested.
 
-To install modules:
-
-```
-$	astro install mocha
-```
-
-
-This commmand will add [astro-mocha](https://www.npmjs.com/package/astro-mocha) to your local astro-cli for use.  Each module will have it's own available options.  See individual module documentation for details on usage options available.
 
 ### Using Astro
 
@@ -56,6 +65,8 @@ myModule$ astro mocha 	*astro runs myModule's tests with mocha*
 ```
 
 myProject and myModule in the above example require no setup other than tests in a '/test' folder.
+
+The first time the 'astro-mocha' commmands is executed by Astro, astro will add [astro-mocha](https://www.npmjs.com/package/astro-mocha) to your local astro-cli for use.  
 
 
 ### Features
@@ -80,17 +91,4 @@ Execute any astro command from within your application's docker container.  When
 1.  A Dockerfile located at the current working directory where the astro command is issued.
 2.  A running Docker instance.  For information on running Docker on your development platform see the [Docker Installation Instructions](https://docs.docker.com/installation/) for your OS specific installation instructions.
 3. 	astro-cli must be installed as a local dependency for your specific application.
-
-
-
-#### Force (--force)
-
-Astro can install auto install modules that are currently not installed to Astro. Add "--force" to any astro command to force astro to try and install the astro-* module if necessary.
-
-```
-$ cd myProject
-myProject$ astro mocha --force (will install astro-mocha if necessary)
-```
-
-Force is important for utlizing Astro for automated delivery functionality, running astro as part of your deployment procedures.  For more information see "Using Astro for deployment" section below.
 

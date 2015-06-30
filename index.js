@@ -1,4 +1,10 @@
 #! /usr/bin/env node
+/**
+*
+* astro-cli - Entrypoint for Astro CLI commands
+*
+**/
+
 'use strict';
 var help = require('./src/messages/help');
 
@@ -9,6 +15,7 @@ var chokidar = require('chokidar')
 	, processCommands = require('./src/processCommands')
 	, processCommandsInContainer = require('./src/processCommandsInContainer')
 	, processInstallCommands = require('./src/processInstallCommands')
+	, processAliasCommands = require('./src/processAliasCommands')
 	, watcher = require('./src/watcher')
 	;
 
@@ -16,7 +23,8 @@ var chokidar = require('chokidar')
 var argv = parseArgv(process.argv, aliases)
 	, commands = argv._
 	, commandString = commands.join('')
-	, args = argv;
+	, args = argv
+	, firstCommand = commands[0];
 
 
 // remove commands from arguments;
@@ -30,8 +38,12 @@ if (needsHelp) {
 
 // check for update/install command
 // special function for installing/updateing astro modules for usage
-if (commands[0] === 'install' || commands[0] === 'update') {
+if (firstCommand === 'install' || firstCommand === 'update') {
 	return processInstallCommands(commands, args);
+}
+
+if (firstCommand === 'alias' || firstCommand === 'aliases') {
+	return processAliasCommands(commands, args);
 }
 
 // handle watch request option
@@ -39,9 +51,12 @@ if (args.watch) {
 	watcher(commands, args);
 }
 
+
 // check for docker option
 if (args.docker) {
+	// process commands from within the application's docker container
 	processCommandsInContainer(commands, args);
 } else {
+	// process commands locally
 	processCommands(commands, args);
 }

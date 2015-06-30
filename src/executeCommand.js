@@ -21,7 +21,7 @@ function runCommand (cmd, args, directory, cb) {
 		if (code === 0) {
 
 			if (!silentPraise) {
-				console.log(chalk.green('--good dog'));
+				console.log(chalk.bgGreen('--good dog'));
 			}
 			if (cb) { cb() };
 

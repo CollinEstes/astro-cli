@@ -6,7 +6,7 @@
 * @param options - the options to apply to the command
 **/
 
-var noCommandFound = require('./messages/noCommandFound')
+var noModuleFound = require('./messages/noModuleFound')
 	, processInstallCommands = require('./processInstallCommands')
 	, cwd = process.cwd()
 	, executeCommand = require('./executeCommand')
@@ -32,25 +32,23 @@ function processCommand (cmd, options) {
 		 // execute module if exists
 		if (module) {
 			return executeModule(module, options);
+		} else {
+			processInstallCommands(['install', cmd], options, function (err) {
+			if (err) {
+				noModuleFound(cmd);
+			}
+			module = checkForModule(cmd);
+
+	 		// execute module if exists now
+			if (module) {
+				executeModule(module, options);
+			}
+
+		});
 		}
 
-		// if module doesn't exist and option "force" then install before running
-		if (options.force) {
-			return processInstallCommands(['install', cmd], options, function () {
-				module = checkForModule(cmd);
+		
 
-		 		// execute module if exists now
-				if (module) {
-					executeModule(module, options);
-				} else{
-					noCommandFound(cmd);
-				}
-
-			});
-		}
-
-		// module was not found and "force" was not desginated
-		return noCommandFound(cmd);
 
 }
 

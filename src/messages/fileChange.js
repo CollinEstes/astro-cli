@@ -18,7 +18,7 @@ function fileChange (path) {
     " ",
     "Astro saw a change to file: " + path,
     " "
-    ]);
+    ], 'bgYellow');
 
 }
 
