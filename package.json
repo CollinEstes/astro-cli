@@ -1,6 +1,6 @@
 {
   "name": "astro-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A space age developer's task runner/asset pipeline tool",
   "main": "index.js",
   "scripts": {

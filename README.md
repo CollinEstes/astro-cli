@@ -77,9 +77,9 @@ Execute any astro command from within your application's docker container.  When
 
 **This feature has three dependencies**
 
-	1.  A Dockerfile located at the current working directory where the astro command is issued.
-	2.  A running Docker instance.  For information on running Docker on your development platform see the [Docker Installation Instructions](https://docs.docker.com/installation/) for your OS specific installation instructions.
-	3. 	astro-cli must be installed as a local dependency for your specific application.
+1.  A Dockerfile located at the current working directory where the astro command is issued.
+2.  A running Docker instance.  For information on running Docker on your development platform see the [Docker Installation Instructions](https://docs.docker.com/installation/) for your OS specific installation instructions.
+3. 	astro-cli must be installed as a local dependency for your specific application.
 
 
 
