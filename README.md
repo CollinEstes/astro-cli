@@ -8,7 +8,7 @@ Currently Astro provides Node.js and front-end development workflow tools:
 
 ### Style/Syntax Checking
 + [Jshint](https://www.npmjs.com/package/astro-jshint)
-+ JSCS (coming soon)
++ [JSCS](https://ww.npmjs.com/package/astro-jscs)
 + ESLINT (coming soon)
 
 ### Testing
