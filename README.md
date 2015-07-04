@@ -8,14 +8,14 @@ Currently Astro provides Node.js and front-end development workflow tools:
 
 ### Style/Syntax Checking
 + [Jshint](https://www.npmjs.com/package/astro-jshint)
-+ [JSCS](https://ww.npmjs.com/package/astro-jscs)
++ [JSCS](https://www.npmjs.com/package/astro-jscs)
 + ESLINT (coming soon)
 
 ### Testing
 + [Mocha](https://www.npmjs.com/package/astro-mocha)
 
 ### Transpiling
-+ Babel (coming soon)
++ [Babel](https://www.npmjs.com/package/astro-babel)
 + SASS (coming soon)
 
 ### Transforming
