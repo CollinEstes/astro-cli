@@ -3,6 +3,15 @@
 		"mocha",
 		"--sinon",
 		"--chai",
+		"--babel",
 		"--force"
+	],
+	"develop": [
+		"jshint",
+		"mocha",
+		"--sinon",
+		"--chai",
+		"--force",
+		"--watch"
 	]
 }
