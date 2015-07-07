@@ -4,6 +4,7 @@
 		"--sinon",
 		"--chai",
 		"--babel",
+		"--proxyquire",
 		"--force"
 	],
 	"develop": [

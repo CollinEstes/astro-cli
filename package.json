@@ -1,6 +1,6 @@
 {
   "name": "astro",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "description": "A space age developer's task runner/asset pipeline tool",
   "main": "index.js",
   "scripts": {
