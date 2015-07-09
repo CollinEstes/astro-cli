@@ -103,7 +103,7 @@ Astro's provides the ability to alias commands/options or sets of commands/optio
 
 For example, lets say you have a alias 'build-client' that runs commands 'sass catmin browserify'.  Then you decide to add babel transpiling to your build-client process to enable es7 development, the alias 'build-client' can be updated to 'sass catmin browserify --babel'.  Now anytime you run build it will transpile your browserified assets with babel.
 
-By default astro ships with [default aliases](https://github.com/CollinEstes/astro-cli/blob/master/defaults/aliases.json)
+By default astro ships with [default aliases](https://github.com/CollinEstes/astro-cli/blob/master/aliases.json)
 
 Astro gives you the ability to change or add default aliases,
 
