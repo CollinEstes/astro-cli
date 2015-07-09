@@ -13,10 +13,12 @@ Currently Astro provides Node.js and front-end development workflow tools:
 
 ### Testing
 + [Mocha](https://www.npmjs.com/package/astro-mocha)
++ Tape (coming soon)
 
 ### Transpiling
 + [Babel](https://www.npmjs.com/package/astro-babel)
 + SASS (coming soon)
++ Browserify (coming soon)
 
 ### Transforming
 + Concat / Minification (coming soon)
@@ -72,10 +74,61 @@ myModule$ astro mocha
 
 myProject and myModule in the above example require no setup other than tests in a '/test' folder.
 
-The first time the 'astro-mocha' commmands is executed by Astro, astro will add [astro-mocha](https://www.npmjs.com/package/astro-mocha) to your local astro-cli for use.
+The first time the 'astro-mocha' commmands is executed by Astro, astro will add [astro-mocha](https://www.npmjs.com/package/astro-mocha) to your local astro for use.
+
+
+### Using Astro with NPM
+For deployment purposes or team development it may be desirable to put astro commands within the 'scripts' section of your package.json file.  Using astro this way requires astro to be installed as a local dev-dependency for your application.
+
+```
+$ cd myProject
+myProject$ npm install --save-dev astro
+```
+
+Then add desired commands to package.json:
+```
+"scripts": {
+    "test": "astro test",
+    "build": "astro build"
+}
+```
+*This example uses aliases (which is recommended for use with NPM), for more information on the astro alias feature see below.*
+
+
 
 
 ## Features
+
+### Aliases
+
+Astro's provides the ability to alias commands/options or sets of commands/options together into a singular alias.  **Aliases enable you to add to or change commands seamlessly, without updating each application/module's build file or npm scripts**.
+
+For example, lets say you have a alias 'build-client' that runs commands 'sass catmin browserify'.  Then you decide to add babel transpiling to your build-client process to enable es7 development, the alias 'build-client' can be updated to 'sass catmin browserify --babel'.  Now anytime you run build it will transpile your browserified assets with babel.
+
+By default astro ships with [default aliases](add link to defaults).
+
+Astro gives you the ability to change or add default aliases,
+
+```
+$ astro alias test mocha --chai --sinon --babel
+```
+
+The above command will create a new default alias called 'test' that will perform the commands 'mocha' with options "--chai, --sinon, --babel".
+
+For this example then:
+```
+$ 'astro test' === $ 'astro mocha --chai --sinon --babel'
+```
+
+#### App specific aliasing
+
+In some situations it may be necessary to have application specific aliases. For example one project may default 'test' to mocha for testing, another may default to tape.
+
+Astro will first look for in the current working directory first for the aliases configuration.  *(This is the only configuration necessary and it is optional)*
+
+To create application specific aliases, add a "astro.json" file to your application's root directory and astro will use it instead of the global defaults.
+
+
 
 ### Watch (--watch)
 
@@ -96,4 +149,4 @@ Execute any astro command from within your application's docker container.  When
 
 1.  A Dockerfile located at the current working directory where the astro command is issued.
 2.  A running Docker instance.  For information on running Docker on your development platform see the [Docker Installation Instructions](https://docs.docker.com/installation/) for your OS specific installation instructions.
-3. 	astro-cli must be installed as a local dependency for your specific application.
+3. 	astro must be installed as a local dev-dependency for your specific application.

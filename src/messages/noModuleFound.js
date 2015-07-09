@@ -21,7 +21,7 @@ function noModule (cmd) {
     "If the astro module exists it must be named: astro-" + cmd,
     "",
     ""
-    ], 'bgRed');
+    ], 'red');
 
 }
 
