@@ -1,4 +1,6 @@
-## Astro - a configure-less web application build tool.
+# Astro
+
+## A configure-less web application build tool.
 
 Astro is a convention's based build system/asset pipeline tool for web application development. Never write another gulp or grunt or broccoli file!
 

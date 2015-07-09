@@ -1,7 +1,7 @@
 {
   "name": "astro",
-  "version": "0.3.4",
-  "description": "A space age developer's task runner/asset pipeline tool",
+  "version": "0.3.5",
+  "description": "A space age web developer's best friend",
   "main": "index.js",
   "scripts": {
     "test:self": "astro test",
