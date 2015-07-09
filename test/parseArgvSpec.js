@@ -7,7 +7,7 @@
 var chai = require('chai');
 var expect = require('chai').expect;
 
-var aliases = require('../defaults/aliases.json');
+var aliases = require('../aliases.json');
 var parser = require('../src/parseArgv.js');
 
 describe('parseArgv.js', function () {

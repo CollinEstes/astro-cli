@@ -4,7 +4,7 @@
 *
 **/
 
-var defaults = require('../defaults/aliases.json');
+var defaults = require('../aliases.json');
 
 module.exports = function (cwd) {
 	var aliases;

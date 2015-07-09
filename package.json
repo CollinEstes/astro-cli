@@ -1,6 +1,6 @@
 {
   "name": "astro",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A space age developer's task runner/asset pipeline tool",
   "main": "index.js",
   "scripts": {
@@ -32,6 +32,7 @@
     "chalk": "^1.0.0",
     "chokidar": "^1.0.3",
     "fs-extra": "^0.20.1",
+    "jsonfile": "^2.2.1",
     "lodash": "^3.9.3",
     "minimist": "^1.1.1",
     "prettyjson": "^1.1.2"

@@ -6,7 +6,8 @@
 
 var prettyJson = require('prettyjson')
 	, noAliasMessage = require('./messages/noAliasMessage')
-	, aliases = require('../defaults/aliases.json')
+	, aliases = require('../aliases.json')
+	, jsonfile = require('jsonfile')
 	;
 
 
@@ -18,6 +19,15 @@ var jsonFormatColors = {
 
 function showAliases (value) {
 	console.log(prettyJson.render(value, jsonFormatColors));
+}
+
+function writeAliases (obj) {
+	jsonfile.writeFile('aliases.json', obj, function (err) {
+		if (err) {
+			console.log('There was a problem saving alises.json');
+			console.log(err);
+		}
+	});
 }
 
 module.exports = function (commands, args) {
@@ -45,6 +55,8 @@ module.exports = function (commands, args) {
 		aliases[aliasCommands[0]] = updatedAliasCommand;
 
 		showAliases(aliases);
+
+		writeAliases(aliases);
 
 	}
 }
