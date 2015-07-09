@@ -1,10 +1,10 @@
-## Astro is a command line tool for developers to quickly perform the common tasks that make up a modern workflow or asset pipeline, but doing so from external to the application itself.
+## Astro - a configure-less web application build tool.
 
-Astro aims to eliminate setup time needed when creating or enhancing micro-service modules. Astro provides a framework for incorporating the latest workflow tooling and processes into daily software engineering workflows, and Astro does not require any configuration to be used out of the box.
+Astro is a convention's based build system/asset pipeline tool for web application development. Never write another gulp or grunt or broccoli file!
 
-As workflow tooling and processes change, existing applications will not require task runner updates, new scripts, or additional dependencies to use the latest tools. Never write or change another gulp or grunt or broccoli file!
+Astro provides a framework for incorporating the latest workflow tooling and processes into daily web developer workflows, and Astro does not require any configuration to be used out of the box. As workflow tooling and processes change, existing applications will not require task runner updates, new scripts, or additional dependencies to use the latest tools.
 
-Currently Astro provides Node.js and front-end development workflow tools:
+Currently Astro provides Node.js and front-end development workflow tools.  Here are a few examples:
 
 ### Style/Syntax Checking
 + [Jshint](https://www.npmjs.com/package/astro-jshint)
