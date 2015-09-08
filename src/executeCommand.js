@@ -27,17 +27,23 @@ function runCommand (cmd, args, directory, cb) {
 		if (code === 0) {
 
 			if (!silentPraise) {
-				console.log(chalk.green('--good dog'));
+				console.log(chalk.green(`-- good dog --`));
 			}
-			if (cb) { cb() };
+
+			if (cb) {
+        return cb();
+      }
 
 		} else {
-
 			console.log(chalk.red('astro completed with code:', cmd, code));
-			if (cb) { cb(new Error('astro command failed code' + code)) };
+
+			if (cb) {
+        cb(new Error('astro command failed code' + code));
+      }
 
 		}
 
+    process.exit(code);
 	});
 }
 

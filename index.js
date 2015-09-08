@@ -24,33 +24,32 @@ var argv = parseArgv(process.argv, aliases)
 	, commands = argv._
 	, commandString = commands.join('')
 	, args = argv
-	, firstCommand = commands[0];
+	, firstCommand = commands[0]
+	, needsHelp = commands.length === 0 || commandString.indexOf('help') !== -1
+	;
 
 
 // remove commands from arguments;
 delete args._;
 
-// flag for help
-var needsHelp = commands.length === 0 || commandString.indexOf('help') !== -1
 if (needsHelp) {
-	return help();
+	help();
 }
 
 // check for update/install command
-// special function for installing/updateing astro modules for usage
+// special function for installing/updating astro modules for usage
 if (firstCommand === 'install' || firstCommand === 'update') {
-	return processInstallCommands(commands, args);
+	processInstallCommands(commands, args);
 }
 
 if (firstCommand === 'alias' || firstCommand === 'aliases') {
-	return processAliasCommands(commands, args);
+	processAliasCommands(commands, args);
 }
 
 // handle watch request option
 if (args.watch) {
 	watcher(commands, args);
 }
-
 
 // check for docker option
 if (args.docker) {

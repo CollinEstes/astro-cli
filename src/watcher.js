@@ -14,10 +14,10 @@ var fileChangeMsg = require('./messages/fileChange.js')
 
 module.exports = function (commands, args) {
 	chokidar.watch('.', {
-			ignored: /[\/\\]\./,
-			persistent: true})
+		ignored: /[\/\\]\./,
+		persistent: true
+	})
 	.on('change', function (path) {
-
 		// print the path of what changed
 		fileChangeMsg(path);
 		// run the command that we were watching for

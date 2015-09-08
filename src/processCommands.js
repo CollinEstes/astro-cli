@@ -34,29 +34,22 @@ function processCommand (cmd, options) {
 			return executeModule(module, options);
 		} else {
 			processInstallCommands(['install', cmd], options, function (err) {
-			if (err) {
-				noModuleFound(cmd);
-			}
-			module = checkForModule(cmd);
+				if (err) {
+					noModuleFound(cmd);
+				}
+				module = checkForModule(cmd);
 
-	 		// execute module if exists now
-			if (module) {
-				executeModule(module, options);
-			}
-
-		});
+				// execute module if exists now
+				if (module) {
+					executeModule(module, options);
+				}
+			});
 		}
-
-		
-
-
 }
-
 
 module.exports = function (commands, options) {
 	// process each command
 	commands.forEach(function (cmd) {
 		processCommand(cmd, options);
 	});
-
 };

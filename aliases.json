@@ -14,5 +14,15 @@
 		"--chai",
 		"--force",
 		"--watch"
+	],
+	"developForWeb": [
+	  "jshint",
+	  "mocha",
+	  "--sinon",
+	  "--chai",
+	  "--force",
+	  "--watch",
+	  "sass",
+	  "--watch"
 	]
 }
