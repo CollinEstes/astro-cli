@@ -4,7 +4,9 @@
 * @param:path - The path of the file that changed (string)
 *
 **/
-var print = require('./print');
+var print = require('./print')
+  , chalk = require('chalk')
+  ;
 
 /**
 *
@@ -15,10 +17,9 @@ function fileChange (path) {
 
 	print([
     " ",
-    " ",
-    "Astro saw a change to file: " + path,
+    `  Astro sniffed out a change to ${chalk['blue'](path)}`,
     " "
-    ], 'yellow');
+    ], 'white');
 
 }
 

@@ -25,37 +25,31 @@ var argv = parseArgv(process.argv, aliases)
 	, commandString = commands.join('')
 	, args = argv
 	, firstCommand = commands[0]
-	, needsHelp = commands.length === 0 || commandString.indexOf('help') !== -1
+	, isNeedsHelp = commands.length === 0 || commandString.indexOf('help') !== -1
+	,	isInstallOrUpdate = firstCommand === 'install' || firstCommand === 'update'
+	, isAliasCommand = firstCommand === 'alias' || firstCommand === 'aliases'
 	;
-
 
 // remove commands from arguments;
 delete args._;
 
-if (needsHelp) {
+if (isNeedsHelp) {
 	help();
-}
-
-// check for update/install command
-// special function for installing/updating astro modules for usage
-if (firstCommand === 'install' || firstCommand === 'update') {
+} else if (isInstallOrUpdate) {
 	processInstallCommands(commands, args);
-}
-
-if (firstCommand === 'alias' || firstCommand === 'aliases') {
+} else if (isAliasCommand) {
 	processAliasCommands(commands, args);
-}
-
-// handle watch request option
-if (args.watch) {
-	watcher(commands, args);
-}
-
-// check for docker option
-if (args.docker) {
-	// process commands from within the application's docker container
-	processCommandsInContainer(commands, args);
 } else {
-	// process commands locally
-	processCommands(commands, args);
+	if (args.watch) {
+		watcher(commands, args);
+	} else {
+    // check for docker option
+    if (args.docker) {
+      // process commands from within the application's docker container
+      processCommandsInContainer(commands, args);
+    } else {
+      // process commands locally
+      processCommands(commands, args);
+    }
+  }
 }

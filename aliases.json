@@ -17,12 +17,13 @@
 	],
 	"developForWeb": [
 	  "jshint",
-	  "mocha",
-	  "--sinon",
-	  "--chai",
-	  "--force",
-	  "--watch",
 	  "sass",
 	  "--watch"
+	],
+	"buildClient": [
+	  "jshint",
+	  "babel --input=src/client/js --output=dist/client/js",
+	  "sass",
+	  "minify"
 	]
 }
