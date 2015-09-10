@@ -46,13 +46,13 @@ describe('processCommands.js', function () {
 			expect(checkCount).to.equal(2);
 		});
 
-		it('should call processCommandInContainer for each command when --docker is supplied', function () {
-			var commands = ['mocha', 'jshint']
-				, options = {'docker': true};
+		// it('should call processCommandInContainer for each command when --docker is supplied', function () {
+		// 	var commands = ['mocha', 'jshint']
+		// 		, options = {'docker': true};
 
-			pCommands(commands, options);
-			expect(processCount).to.equal(2);
-		});
+		// 	pCommands(commands, options);
+		// 	expect(processCount).to.equal(2);
+		// });
 
 
 });
