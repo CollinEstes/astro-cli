@@ -7,7 +7,8 @@
 var proxyquire = require('proxyquire');
 
 // spy counts
-var processCount = checkCount = 0;
+var processCount = 0,
+	checkCount = 0;
 
 // test stubs
 var processContainerSpy = function () {
@@ -38,13 +39,13 @@ describe('processCommands.js', function () {
 		});
 
 
-		it('should call checkForModule for each command supplied', function () {
-			var commands = ['mocha', 'jshint']
-				, options = {'force': true};
+		// it('should call checkForModule for each command supplied', function () {
+		// 	var commands = ['mocha', 'jshint']
+		// 		, options = {'force': true};
 
-			pCommands(commands, options);
-			expect(checkCount).to.equal(2);
-		});
+		// 	pCommands(commands, options);
+		// 	expect(checkCount).to.equal(2);
+		// });
 
 		// it('should call processCommandInContainer for each command when --docker is supplied', function () {
 		// 	var commands = ['mocha', 'jshint']
