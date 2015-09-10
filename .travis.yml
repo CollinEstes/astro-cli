@@ -1,4 +1,11 @@
 language: node_js
-
 node_js:
- - "0.12"
+- '0.12'
+deploy:
+  provider: npm
+  email: collin.j.estes@gmail.com
+  api_key:
+    secure: HwPKdy4R3KxS0CXfiHc2GSC5Z3W+ixarnuW2SA1Bo7cnXj2QlpRFT3ZHRywDybdZp5rGKdLgPOMPpW7tW1teEvELac2gfw5ngSyiiPlOGxBj0+wTy2HFn2sHeYFdoRHkCv7A1Kd/hBBLOkapFbyxuzvFm0mI7QoNHKOUC4dpiDu/EU3bRrWcFQGGTR2akRRHCgDJcfn3Gnljyf/MYE2VwJJ76Ks/xcAJzxEynfRz6IElIF83YaYNAOdmbpKb1RJhJoiUM4rJuR6/I42LbVGCO6IQ3fS30eErVAI0P/bdehn3U3uq+/pZ5TLExiEoWmnPgywBqjzMCZTlY9cXZhGMMszx9zWFP0/DnLp6/hdYHxJds5dEPmMLn2BSghnzpv8wHkpRoUwYW+dHX6GmFKvXJyeRHeCDN31wu1kYyI+J4W8ohd/rC+gBtbERUEF0BjWRiCJIASPFEFabbvhvygfekT4hr957neYJM0bMWOCwykDRkczmQLz3nM7/OQW8VcqEKNXXbw6JNlbrMCUR5QQS45bIBcvB+WTDa4INbxiazwXuWzKaTsR7XJOEaGgy7u5tua/g2jPZn5JtMnz+vggUJdM8E4Lk7HiIZIjNzeHalA+8UG7dR9HVAevOGXA1G001TyfwDFOFHu4tv3aqV58dpowI8k9L0jJ2ERyhXsScKho=
+  on:
+    tags: true
+    repo: CollinEstes/astro-cli
