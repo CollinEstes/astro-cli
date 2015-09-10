@@ -19,11 +19,11 @@ Currently Astro provides Node.js and front-end development workflow tools.  Here
 
 ### Transpiling
 + [Babel](https://www.npmjs.com/package/astro-babel)
-+ [SASS] (https://www.npmjs.com/package/astro-sass)
++ [SASS](https://www.npmjs.com/package/astro-sass)
 + Browserify (coming soon)
 
 ### Minifying
-+ [Minify] (https://www.npmjs.com/package/astro-minify)
++ [Minify](https://www.npmjs.com/package/astro-minify)
 
 ### Transforming
 + Concat / Minification (coming soon)
