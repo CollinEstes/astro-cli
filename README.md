@@ -77,7 +77,7 @@ myModule$ astro mocha
 
 myProject and myModule in the above example require no setup other than tests in a '/test' folder.
 
-The first time the 'astro-mocha' commmands is executed by Astro, astro will add [astro-mocha](https://www.npmjs.com/package/astro-mocha) to your local astro for use.
+The first time the 'astro-mocha' command is executed by Astro, astro will add [astro-mocha](https://www.npmjs.com/package/astro-mocha) to your local astro for use.
 
 
 ### Using Astro with NPM
