@@ -146,7 +146,7 @@ Astro will now run the "mocha" command but it will also watch for any changes to
 
 ### Docker (--docker)
 
-Execute any astro command from within your application's docker container.  When the --docker option is present, Astro will look for a Dockerfile from within the current working directory.  Astro then builds an image from your application's Dockerfile and executes the provided Astro commands from within that container.
+Execute any astro command from within your application's docker container.  When the --docker option is present, Astro will look for a Dockerfile from within the '/test' folder of your current working directory.  It does not look for the Dockerfile at the root of the project because your test file might need to be different from your actual dockerfile.  Astro then builds an image from your application's Dockerfile and executes the provided Astro commands from within that container.
 
 **This feature has three dependencies**
 
