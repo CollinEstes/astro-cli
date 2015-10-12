@@ -4,7 +4,6 @@
 *
 **/
 var cwd = process.cwd()
-	, path = require('path')
 	, executeCommand = require('./executeCommand')
 	;
 
@@ -12,7 +11,7 @@ var imageName;
 
 function checkForDockerfile () {
 	try {
-		require.resolve(cwd + '/test/Dockerfile');
+		require.resolve(cwd + '/Dockerfile');
 		return true;
 	} catch (e) {
 		return null;
@@ -34,8 +33,7 @@ function rebuildOptions (args) {
 
 
 function buildBaseImage (cb) {
-	var dockerFileLoc = path.join(cwd, 'test');
-	executeCommand('docker', ['build', '-t', imageName , '.'], dockerFileLoc, cb);
+	executeCommand('docker', ['build', '-t', imageName , '.'], cwd, cb);
 }
 
 function runImage (commands, args) {
