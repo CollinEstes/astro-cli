@@ -25,7 +25,6 @@ function getDockerFileName () {
 	} catch (e) {
 		return checkForDockerfileDefault();
 	}
-	}
 }
 
 function rebuildOptions (args) {

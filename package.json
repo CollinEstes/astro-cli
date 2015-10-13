@@ -1,6 +1,6 @@
 {
   "name": "astro",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "A space age web developer's best friend",
   "main": "index.js",
   "scripts": {
