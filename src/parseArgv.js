@@ -13,7 +13,7 @@ module.exports = function (argv, aliases) {
 		, commands = parsedArgv._
 		, parsed;
 
-	if (!aliases || !aliases[parsedArgv._[0]]) {
+	if (!aliases || !aliases[parsedArgv._[0]] || parsedArgv.docker) {
 		return parsedArgv;
 	}
 

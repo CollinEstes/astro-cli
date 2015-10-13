@@ -25,6 +25,7 @@ function getDockerFileName () {
 	} catch (e) {
 		return checkForDockerfileDefault();
 	}
+	}
 }
 
 function rebuildOptions (args) {
@@ -48,6 +49,7 @@ function buildBaseImage (dockerFileName, cb) {
 function runImage (commands, args) {
 	// build docker run command
 	var options = rebuildOptions(args)
+			, cmd = ['./node_modules/.bin/astro'].concat(commands).concat(options).concat(['--force']).join(' ')
 			, runArgs = [
 					'run',
 					'--rm',
@@ -55,10 +57,7 @@ function runImage (commands, args) {
 					'-v',
 					cwd  + ':' + '/tmp/astro/app',
 					imageName,
-					'./node_modules/.bin/astro'].
-					concat(commands).
-					concat(options).
-					concat(['--force']);
+					cmd];
 
 	// run image
   executeCommand('docker', runArgs, cwd);
