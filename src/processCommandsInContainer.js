@@ -9,12 +9,21 @@ var cwd = process.cwd()
 
 var imageName;
 
-function checkForDockerfile () {
+function checkForDockerfileDefault () {
 	try {
 		require.resolve(cwd + '/Dockerfile');
-		return true;
+		return 'Dockerfile';
 	} catch (e) {
 		return null;
+	}
+}
+
+function getDockerFileName () {
+	try {
+		require.resolve(cwd + '/Dockerfile.astro');
+		return 'Dockerfile.astro';
+	} catch (e) {
+		return checkForDockerfileDefault();
 	}
 }
 
@@ -32,8 +41,8 @@ function rebuildOptions (args) {
 }
 
 
-function buildBaseImage (cb) {
-	executeCommand('docker', ['build', '-t', imageName , '.'], cwd, cb);
+function buildBaseImage (dockerFileName, cb) {
+	executeCommand('docker', ['build', '-t', imageName , '-f', dockerFileName, '.'], cwd, cb);
 }
 
 function runImage (commands, args) {
@@ -57,19 +66,17 @@ function runImage (commands, args) {
 
 module.exports = function (commands, args, fromWatch) {
 	var dir = cwd.split('/');
+	var dockerFile = getDockerFileName();
 
 	// set imageName for the name of the project
 	imageName = 'astro-' + dir[dir.length -1];
-
-	//first: get application's DockerFile to server as base image
-	var dockerFile = checkForDockerfile();
 
 	if (!dockerFile) {
 		return console.log('No DockerFile message'); //TODO route to proper message
 	}
 
 	if (!fromWatch) {
-		buildBaseImage(function (err) {
+		buildBaseImage(dockerFile, function (err) {
 			if (err) {
 				throw err;
 			}
